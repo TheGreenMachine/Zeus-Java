@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.SimpleRobot;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Zeus extends SimpleRobot {
-    public static double rightSpeed;
-    public static double leftSpeed;
-    public static int dumperDirection;
-    public static boolean runConveyor;
+    public double rightSpeed;
+    public double leftSpeed;
+    public int dumperDirection;
+    public boolean runConveyor;
     
     public void robotInit(){
         Components.getInstance();
@@ -69,7 +69,7 @@ public class Zeus extends SimpleRobot {
        }
     }
     
-    public static void mechanismSet(){
+    public void mechanismSet(){
         Components robotParts = Components.getInstance();
         
         //Handle Driving
