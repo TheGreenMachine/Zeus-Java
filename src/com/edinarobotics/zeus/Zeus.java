@@ -26,6 +26,7 @@ public class Zeus extends SimpleRobot {
         leftSpeed = 0;
         rightSpeed = 0;
         runConveyor = false;
+        dumperDirection = 0;
         mechanismSet();
     }
     
