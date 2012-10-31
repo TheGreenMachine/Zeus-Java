@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class Zeus extends SimpleRobot {
     public double rightSpeed;
     public double leftSpeed;
-    public int dumperDirection;
+    public boolean runDumper;
     public boolean runConveyor;
     
     public void robotInit(){
@@ -26,7 +26,7 @@ public class Zeus extends SimpleRobot {
         leftSpeed = 0;
         rightSpeed = 0;
         runConveyor = false;
-        dumperDirection = 0;
+        runDumper = false;
         mechanismSet();
     }
     
@@ -51,15 +51,7 @@ public class Zeus extends SimpleRobot {
          leftSpeed = gamepadFilters.filter(gamepad.getJoysticks()).getLeftY();
          
          //Handle Dumping
-         if(gamepad.getRawButton(Gamepad.RIGHT_BUMPER)){
-             dumperDirection = 1;
-         }
-         else if(gamepad.getRawButton(Gamepad.RIGHT_TRIGGER)){
-             dumperDirection = -1;
-         }
-         else{
-             dumperDirection = 0;
-         }
+         runDumper = gamepad.getRawButton(Gamepad.RIGHT_BUMPER);
          
          //Handle Conveyor and Collector
          runConveyor = gamepad.getRawButton(Gamepad.LEFT_BUMPER);
@@ -73,25 +65,20 @@ public class Zeus extends SimpleRobot {
         Components robotParts = Components.getInstance();
         
         //Handle Driving
-        robotParts.leftDrive.set(leftSpeed);
+        robotParts.leftDrive.set(leftSpeed*-1);
         robotParts.rightDrive.set(rightSpeed);
         
         //Handle Dumper
-        if(dumperDirection == 0){
-            robotParts.dumper.set(0);
-        }
-        else{
             robotParts.dumper.set(
-                    dumperDirection==1 ? 30 : -70
-                    );
-        }
+		    runDumper? 30 : 0
+		    );
         
         //Handle Conveyor
         robotParts.conveyor.set(
-                runConveyor? 50 : 0
+                runConveyor? 100 : 0
                 );
         robotParts.collector.set(
-                runConveyor? 50 : 0
+                runConveyor? -100 : 0
                 );  
     }
     
