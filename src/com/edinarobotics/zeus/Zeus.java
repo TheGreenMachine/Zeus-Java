@@ -4,6 +4,7 @@ import com.edinarobotics.utils.gamepad.FilterSet;
 import com.edinarobotics.utils.gamepad.Gamepad;
 import com.edinarobotics.utils.gamepad.filters.DeadzoneFilter;
 import com.edinarobotics.utils.gamepad.filters.QuarticScalingFilter;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SimpleRobot;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -70,15 +71,15 @@ public class Zeus extends SimpleRobot {
         
         //Handle Dumper
             robotParts.dumper.set(
-		    runDumper? 30 : 0
+		    runDumper? .05 : 0
 		    );
         
         //Handle Conveyor
         robotParts.conveyor.set(
-                runConveyor? 100 : 0
+                runConveyor? Relay.Value.kReverse : Relay.Value.kOff
                 );
         robotParts.collector.set(
-                runConveyor? -100 : 0
+               runConveyor? Relay.Value.kForward : Relay.Value.kOff
                 );  
     }
     

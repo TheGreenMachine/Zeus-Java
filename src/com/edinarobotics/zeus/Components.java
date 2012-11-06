@@ -1,6 +1,8 @@
 package com.edinarobotics.zeus;
 
 import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
@@ -19,8 +21,8 @@ public class Components {
     public Jaguar rightDrive;
     public Jaguar leftDrive;
     public Jaguar dumper;
-    public Victor collector;
-    public Victor conveyor;
+    public Relay collector;
+    public Relay conveyor;
     
     private static Components componentsInstance;
     
@@ -28,8 +30,8 @@ public class Components {
      rightDrive = new Jaguar(RIGHT_DRIVE_PORT);
      leftDrive = new Jaguar(LEFT_DRIVE_PORT);
      dumper = new Jaguar(DUMPER_PORT);
-     collector = new Victor(COLLECTOR_PORT);
-     conveyor = new Victor(CONVEYOR_PORT);
+     collector = new Relay(COLLECTOR_PORT);
+     conveyor = new Relay(CONVEYOR_PORT);
     }
     
     public static Components getInstance(){
